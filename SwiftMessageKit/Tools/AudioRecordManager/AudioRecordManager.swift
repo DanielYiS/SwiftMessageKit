@@ -270,7 +270,7 @@ extension AudioRecordManager : AVAudioRecorderDelegate {
     }
     /// 录音错误回调
     func audioRecorderEncodeErrorDidOccur(_ recorder: AVAudioRecorder, error: Error?) {
-        if let e = error {
+        if let _ = error {
             self.delegate?.audioRecordFailed()
         }
         self.deleteRecordFiles()

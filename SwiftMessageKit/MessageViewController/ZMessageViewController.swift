@@ -309,7 +309,7 @@ public class ZMessageViewController: MessagesViewController {
         self.viewTipDiamond.isHidden = ZSettingKit.shared.role != .user
         self.messageList.removeAll()
         let sendid = String(self.modelUser?.id ?? 0)
-        var models: [ZModelMessage]?
+        var models: [ZModelMessage]? = [ZModelMessage]()
         let array = ZSQLiteExecute.getArrayMessage(models: &models, userid: sendid)
         guard let arrayMessage = self.startConvertMessageModels(models) else {
             return
@@ -325,7 +325,7 @@ public class ZMessageViewController: MessagesViewController {
             self.messageList.removeAll()
         }
         let sendid = String(self.modelUser?.id ?? 0)
-        var models: [ZModelMessage]?
+        var models: [ZModelMessage]? = [ZModelMessage]()
         let array = ZSQLiteExecute.getArrayMessage(models: &models, userid: sendid, time: lasttime)
         guard let arrayMessage = self.startConvertMessageModels(models) else {
             self.viewTipDiamond.alpha = self.viewTipDiamond.isHidden ? 0 : 1
@@ -356,9 +356,9 @@ public class ZMessageViewController: MessagesViewController {
         /// 消息是我发送的。 发送者是我自己
         if model.message_direction == .send {
             sender = self.loginUser
-            receive = ZModelMessageUser.init(senderId: model.message_userid, displayName: nickname, head: head, role: role, gender: gender)
+            receive = ZModelMessageUser.init(senderId: sendid, displayName: nickname, head: head, role: role, gender: gender)
         } else {
-            sender = ZModelMessageUser.init(senderId: model.message_userid, displayName: nickname, head: head, role: role, gender: gender)
+            sender = ZModelMessageUser.init(senderId: sendid, displayName: nickname, head: head, role: role, gender: gender)
             receive = self.loginUser
         }
         let messageId = model.message_id
@@ -382,7 +382,6 @@ public class ZMessageViewController: MessagesViewController {
             message.sentDate = Date.init(timeIntervalSince1970: model.message_time)
             return message
         }
-        return nil
     }
     /// 注册控件事件
     private func innerInitEvent() {
@@ -500,7 +499,7 @@ public class ZMessageViewController: MessagesViewController {
     }
     /// 收到新消息
     @objc func setReceivedNewMessage(_ sender: Notification) {
-        guard var model = sender.object as? ZModelMessage else {
+        guard let model = sender.object as? ZModelMessage else {
             return
         }
         model.message_user = self.modelUser
@@ -556,7 +555,7 @@ public class ZMessageViewController: MessagesViewController {
     private func reloadAnchorInfo() {
         let anchorid = self.modelUser?.userid ?? "0"
         var param = [String: Any]()
-        param["anchor_id"] = self.modelUser?.id ?? 0
+        param["anchor_id"] = anchorid
         ZNetworkKit.shared().startRequest(ZNetworkTargetType.get(ZNetworkAction.anchorDetail, param), responseBlock: { result in
             if result.success, let dic = result.body as? [String: Any] {
                 self.modelUser = ZModelUserInfo.deserialize(from: dic)
