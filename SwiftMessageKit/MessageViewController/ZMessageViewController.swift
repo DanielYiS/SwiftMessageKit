@@ -311,7 +311,6 @@ public class ZMessageViewController: MessagesViewController {
         self.viewTipDiamond.isHidden = ZSettingKit.shared.role != .user
         self.messageList.removeAll()
         let sendid = String(self.modelUser?.id ?? 0)
-        self.tempModels = nil
         let array = ZSQLiteExecute.getArrayMessage(models: &tempModels, userid: sendid)
         guard let arrayMessage = self.startConvertMessageModels() else {
             return
@@ -327,7 +326,6 @@ public class ZMessageViewController: MessagesViewController {
             self.messageList.removeAll()
         }
         let sendid = String(self.modelUser?.id ?? 0)
-        self.tempModels = nil
         let array = ZSQLiteExecute.getArrayMessage(models: &tempModels, userid: sendid, time: lasttime)
         guard let arrayMessage = self.startConvertMessageModels() else {
             self.viewTipDiamond.alpha = self.viewTipDiamond.isHidden ? 0 : 1
