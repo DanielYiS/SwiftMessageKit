@@ -59,6 +59,8 @@ public class ZMessageViewController: MessagesViewController {
     private var isCurrentShowVC: Bool = false
     /// 当前参数
     private var viewParams: [String: Any]?
+    /// 临时集合
+    private var tempModels: [ZModelMessage]?
     
     public override var preferredStatusBarStyle: UIStatusBarStyle {
         if #available(iOS 13.0, *) {
@@ -309,9 +311,9 @@ public class ZMessageViewController: MessagesViewController {
         self.viewTipDiamond.isHidden = ZSettingKit.shared.role != .user
         self.messageList.removeAll()
         let sendid = String(self.modelUser?.id ?? 0)
-        var models: [ZModelMessage]? = [ZModelMessage]()
-        let array = ZSQLiteExecute.getArrayMessage(models: &models, userid: sendid)
-        guard let arrayMessage = self.startConvertMessageModels(models) else {
+        self.tempModels = nil
+        let array = ZSQLiteExecute.getArrayMessage(models: &tempModels, userid: sendid)
+        guard let arrayMessage = self.startConvertMessageModels() else {
             return
         }
         self.messageList.append(contentsOf: arrayMessage)
@@ -325,9 +327,9 @@ public class ZMessageViewController: MessagesViewController {
             self.messageList.removeAll()
         }
         let sendid = String(self.modelUser?.id ?? 0)
-        var models: [ZModelMessage]? = [ZModelMessage]()
-        let array = ZSQLiteExecute.getArrayMessage(models: &models, userid: sendid, time: lasttime)
-        guard let arrayMessage = self.startConvertMessageModels(models) else {
+        self.tempModels = nil
+        let array = ZSQLiteExecute.getArrayMessage(models: &tempModels, userid: sendid, time: lasttime)
+        guard let arrayMessage = self.startConvertMessageModels() else {
             self.viewTipDiamond.alpha = self.viewTipDiamond.isHidden ? 0 : 1
             self.messagesCollectionView.es.stopPullToRefresh(ignoreDate: false, ignoreFooter: false)
             return
@@ -338,8 +340,8 @@ public class ZMessageViewController: MessagesViewController {
         self.messagesCollectionView.es.stopPullToRefresh(ignoreDate: false, ignoreFooter: false)
     }
     /// 把数据集合的消息类型转换成试图需要的消息类型
-    private func startConvertMessageModels(_ models: [ZModelMessage]?) -> [ZModelMessageType]? {
-        let messages = models?.compactMap({ (model) -> ZModelMessageType? in
+    private func startConvertMessageModels() -> [ZModelMessageType]? {
+        let messages = self.tempModels?.compactMap({ (model) -> ZModelMessageType? in
             return self.convertMessageModel(model)
         })
         return messages?.reversed()
