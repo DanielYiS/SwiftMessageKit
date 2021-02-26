@@ -1,0 +1,6 @@
+/* 
+  Localizable.strings
+*/
+
+/// 返回数据错误
+"errorResultData" = "Result data error";
