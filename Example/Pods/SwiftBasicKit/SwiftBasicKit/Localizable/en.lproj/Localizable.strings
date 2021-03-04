@@ -1,0 +1,11 @@
+/* 
+ Localizable.strings
+ */
+
+"errorResultData" = "Result data error";
+"hudLabelText" = "Waiting...";
+
+"btnCancel" = "Cancel";
+"btnContinue" = "Continue";
+
+"labelNoData" = "No Data";
