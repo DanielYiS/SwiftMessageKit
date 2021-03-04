@@ -1,5 +1,0 @@
-strings:
-  inputs: ../Localizable/en.lproj
-  outputs:
-    - templateName: structured-swift5
-      output: SwiftStrings.swift

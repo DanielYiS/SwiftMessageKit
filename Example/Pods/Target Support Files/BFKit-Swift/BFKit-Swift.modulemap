@@ -1,6 +1,0 @@
-framework module BFKit {
-  umbrella header "BFKit-Swift-umbrella.h"
-
-  export *
-  module * { export * }
-}
