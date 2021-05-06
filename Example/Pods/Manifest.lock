@@ -1,0 +1,92 @@
+PODS:
+  - Alamofire (5.4.3)
+  - BFKit-Swift (6.0.1)
+  - CryptoSwift (1.4.0)
+  - ESPullToRefresh (2.9.3)
+  - GRDB.swift (5.7.4):
+    - GRDB.swift/standard (= 5.7.4)
+  - GRDB.swift/standard (5.7.4)
+  - HandyJSON (5.0.2)
+  - Kingfisher (6.3.0)
+  - Moya (14.0.0):
+    - Moya/Core (= 14.0.0)
+  - Moya/Core (14.0.0):
+    - Alamofire (~> 5.0)
+  - PKHUD (5.3.0)
+  - Result (5.0.0)
+  - SKPhotoBrowser (6.1.0)
+  - SnapKit (5.0.1)
+  - Starscream (4.0.4)
+  - SwiftBasicKit (0.6.6):
+    - Alamofire
+    - BFKit-Swift
+    - CryptoSwift
+    - ESPullToRefresh
+    - GRDB.swift
+    - HandyJSON
+    - Kingfisher
+    - Moya
+    - PKHUD
+    - Result
+    - SKPhotoBrowser
+    - SnapKit
+    - SwiftDate
+    - SwiftyStoreKit
+    - Toast-Swift
+  - SwiftDate (6.3.1)
+  - SwiftMessageKit (0.1.5):
+    - Starscream
+    - SwiftBasicKit
+  - SwiftyStoreKit (0.16.1)
+  - Toast-Swift (5.0.1)
+
+DEPENDENCIES:
+  - SwiftMessageKit (from `../`)
+
+SPEC REPOS:
+  https://github.com/CocoaPods/Specs.git:
+    - Alamofire
+    - BFKit-Swift
+    - CryptoSwift
+    - ESPullToRefresh
+    - GRDB.swift
+    - HandyJSON
+    - Kingfisher
+    - Moya
+    - PKHUD
+    - Result
+    - SKPhotoBrowser
+    - SnapKit
+    - Starscream
+    - SwiftBasicKit
+    - SwiftDate
+    - SwiftyStoreKit
+    - Toast-Swift
+
+EXTERNAL SOURCES:
+  SwiftMessageKit:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  Alamofire: e447a2774a40c996748296fa2c55112fdbbc42f9
+  BFKit-Swift: a91367e548f995ef9804956e255912fdbf0d91a2
+  CryptoSwift: 7cc902df1784de3b389a387756c7d710f197730c
+  ESPullToRefresh: 0d68daa602b343c81753a1b95e09fd0bfcddfd40
+  GRDB.swift: 2064e726141f130d0b8bd819b29086f2b1157597
+  HandyJSON: 9e4e236f5d2dbefad5155a77417bbea438201c03
+  Kingfisher: 6c3df386db71d82c0817a429d2c9421a77396529
+  Moya: 5b45dacb75adb009f97fde91c204c1e565d31916
+  PKHUD: 98f3e4bc904b9c916f1c5bb6d765365b5357291b
+  Result: ed341d2f236af425b803e690e9bd8fd0a0cb7c5a
+  SKPhotoBrowser: 343de95d89dc7913763c5dda243cc6e606e4a168
+  SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  Starscream: 5178aed56b316f13fa3bc55694e583d35dd414d9
+  SwiftBasicKit: 97f42d4e1cfe2d03d32d0fb9b16ad927a7c38032
+  SwiftDate: 72d28954e8e1c6c1c0f917ccc8005e4f83c7d4b2
+  SwiftMessageKit: 45fd06bbee10d76944695e9f1d0f1d9ad2c174e4
+  SwiftyStoreKit: 6b9c08810269f030586dac1fae8e75871a82e84a
+  Toast-Swift: 9b6a70f28b3bf0b96c40d46c0c4b9d6639846711
+
+PODFILE CHECKSUM: baee2e166fbe2533ce43072ae14bc21c274f907f
+
+COCOAPODS: 1.10.1
