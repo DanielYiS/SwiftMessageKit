@@ -1,0 +1,12 @@
+/* 
+ Localizable.strings
+ */
+
+"errorResultData" = "Result data error";
+"errorNetwork" = "Network Unstable";
+"hudLabelText" = "Waiting...";
+
+"btnCancel" = "Cancel";
+"btnContinue" = "Continue";
+
+"labelNoData" = "No Data";
