@@ -1,6 +1,7 @@
 import UIKit
 import BFKit.Swift
 import AVFoundation
+import SwiftBasicKit
 
 fileprivate let kAudioFileTypeWav = "wav"
 fileprivate let kAudioFileTypeAmr = "amr"
@@ -74,16 +75,16 @@ class AudioRecordManager: NSObject {
         self.isCancelRecord = false
         self.startTime = CACurrentMediaTime()
         do {
-            //基础参数
+            // 基础参数
             let recordSettings:[String : AnyObject] = [
-                //线性采样位数  8、16、24、32
+                // 线性采样位数  8、16、24、32
                 AVLinearPCMBitDepthKey: NSNumber(value: 16),
-                //设置录音格式  AVFormatIDKey == kAudioFormatLinearPCM
+                // 设置录音格式  kAudioFormatLinearPCM
                 AVFormatIDKey: NSNumber(value: kAudioFormatLinearPCM),
-                //录音通道数  1 或 2
+                // 录音通道数  1 或 2
                 AVNumberOfChannelsKey: NSNumber(value: 1),
-                //设置录音采样率(Hz) 如：AVSampleRateKey == 8000/44100/96000（影响音频的质量）
-                AVSampleRateKey: NSNumber(value: 44100.0),
+                // 设置录音采样率(Hz)  8000/44100/96000（影响音频的质量）
+                AVSampleRateKey: NSNumber(value: 8000.0)
             ]
             self.recorder = try AVAudioRecorder(url: self.recordAudioPath, settings: recordSettings)
             self.recorder.delegate = self
@@ -240,9 +241,9 @@ extension AudioRecordManager : AVAudioRecorderDelegate {
                 self.deleteRecordFiles()
                 return
             }
-            let fileNewUrl = kTempWavRecordPath.appendingPathComponent("\(Date.init().timeIntervalSince1970)".md5()).appendingPathExtension("wav")
+            let fileNewUrl = ZLocalFileApi.wavFilePath
             AudioRecordManager.moveFile(self.recordAudioPath, toPath: fileNewUrl)
-            
+            BFLog.debug("recordAudioPath: \(fileNewUrl.path)")
             self.delegate?.audioRecordFinish(wavAudioData, recordTime: self.audioTimeInterval.floatValue, filepath: fileNewUrl)
             // TODO: - 转换 amr 音频文件 -
             /*if TSVoiceConverter.convertWavToAmr(TempWavRecordPath.path, amrSavePath: TempAmrFilePath.path) {

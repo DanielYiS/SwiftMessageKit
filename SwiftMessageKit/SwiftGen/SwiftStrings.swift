@@ -46,6 +46,8 @@ internal enum L10n {
   internal static let messageReleaseSendMessage = L10n.tr("Localizable", "messageReleaseSendMessage")
   /// Swipe up to cancel sending
   internal static let messageSwipeCancelSend = L10n.tr("Localizable", "messageSwipeCancelSend")
+  /// Voice
+  internal static let voice = L10n.tr("Localizable", "Voice")
 }
 // swiftlint:enable explicit_type_interface function_parameter_count identifier_name line_length
 // swiftlint:enable nesting type_body_length type_name vertical_whitespace_opening_braces

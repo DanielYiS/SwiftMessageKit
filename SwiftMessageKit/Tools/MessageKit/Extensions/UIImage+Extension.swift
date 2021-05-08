@@ -29,6 +29,7 @@ public enum ImageType: String {
     case back
     case report
     case send
+    case audio
 }
 
 import UIKit

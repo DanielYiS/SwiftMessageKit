@@ -88,7 +88,6 @@ public class ZModelMessageRecord: ZModelBase {
         container[Columns.message_type] = self.message_type
         container[Columns.message_direction] = self.message_direction
         container[Columns.message_can_call_back] = self.message_can_call_back
-        container[Columns.message_unread_count] = self.message_unread_count
         container[Columns.login_userid] = self.login_userid
     }
     public override func mapping(mapper: HelpingMapper) {

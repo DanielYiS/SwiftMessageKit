@@ -3,18 +3,27 @@ import BFKit
 
 extension UISearchBar {
     
-    public var textColor: UIColor? {
-        get {
-            if let textField = self.value(forKey: "searchField") as? UITextField  {
-                return textField.textColor
-            } else {
-                return nil
+    public var textField: UITextField? {
+        if let textField = self.value(forKey: "searchField") as? UITextField  {
+            return textField
+        }
+        for item in self.subviews {
+            if item.subviews.count > 0 {
+                for view in item.subviews {
+                    if let vc = NSClassFromString("UISearchBarTextField"), view.isMember(of: vc) {
+                        return vc as? UITextField
+                    }
+                }
             }
         }
+        return nil
+    }
+    public var textColor: UIColor? {
+        get {
+            return textField?.textColor
+        }
         set (newValue) {
-            if let textField = self.value(forKey: "searchField") as? UITextField  {
-                textField.textColor = newValue
-            }
+            textField?.textColor = newValue
         }
     }
     public var placeholderColor: UIColor? {
@@ -22,24 +31,30 @@ extension UISearchBar {
             return nil
         }
         set (newValue) {
-            if let textField = self.value(forKey: "searchField") as? UITextField  {
-                let attribString = NSMutableAttributedString.init(string: self.placeholder ?? "")
-                let length = self.placeholder?.count ?? 0
-                let range = NSRange.init(location: 0, length: length)
-                let color = newValue ?? UIColor.white
-                attribString.addAttributes([NSAttributedString.Key.foregroundColor: color], range: range)
-                textField.attributedPlaceholder = attribString
-            }
+            let attribString = NSMutableAttributedString.init(string: self.placeholder ?? "")
+            let length = self.placeholder?.count ?? 0
+            let range = NSRange.init(location: 0, length: length)
+            let color = newValue ?? UIColor.white
+            attribString.addAttributes([NSAttributedString.Key.foregroundColor: color], range: range)
+            textField?.attributedPlaceholder = attribString
         }
     }
     public var leftView: UIView? {
         get {
-            return nil
+            return textField?.leftView
         }
         set {
-            if let textField = self.value(forKey: "searchField") as? UITextField  {
-                textField.leftView = newValue
-            }
+            textField?.leftView = newValue
+            textField?.leftViewMode = .always
+        }
+    }
+    public var rightView: UIView? {
+        get {
+            return textField?.rightView
+        }
+        set {
+            textField?.rightView = newValue
+            textField?.rightViewMode = .always
         }
     }
     public var barBackgroundColor: UIColor? {
@@ -50,24 +65,8 @@ extension UISearchBar {
             for item in self.subviews {
                 if item.subviews.count > 0 {
                     for view in item.subviews {
-                        if let vc = NSClassFromString("UISearchBarBackground"), view.isKind(of: vc) {
+                        if let vc = NSClassFromString("UISearchBarBackground"), view.isMember(of: vc) {
                             view.backgroundColor = newValue
-                        }
-                    }
-                }
-            }
-        }
-    }
-    public var textFieldBackgroundColor: UIColor? {
-        get {
-            return self.backgroundColor
-        }
-        set {
-            for item in self.subviews {
-                if item.subviews.count > 0 {
-                    for view in item.subviews {
-                        if let vc = NSClassFromString("UISearchBarTextField"), view.isKind(of: vc) {
-                            (view as? UITextField)?.backgroundColor = newValue
                         }
                     }
                 }

@@ -1,5 +1,6 @@
 import UIKit
 import BFKit
+import AVKit
 import Alamofire
 import AVFoundation
 
@@ -81,8 +82,17 @@ open class AudioPlayManager: NSObject, AVAudioPlayerDelegate {
         case .audio(let item):
             playingCell = audioCell
             playingMessage = message
+            BFLog.info("create audio player for URL: \(item.url.path)")
             guard let player = try? AVAudioPlayer(contentsOf: item.url) else {
-                BFLog.info("Failed to create audio player for URL: \(item.url)")
+                BFLog.info("Failed to create audio player")
+                return
+            }
+            let audioSession = AVAudioSession.sharedInstance()
+            do {
+                try audioSession.setCategory(AVAudioSession.Category(rawValue: (AVAudioSession.Category.playback.rawValue)))
+                try audioSession.setActive(true)
+            } catch let error  {
+                BFLog.error("初始化录音功能失败 error localizedDescription: \(error.localizedDescription)")
                 return
             }
             audioPlayer = player

@@ -13,6 +13,7 @@
 "btnAlbum" = "Album";
 "btnCamera" = "Camera";
 
+"Voice" = "Voice";
 "inputMessagePlaceholder" = "Input message...";
 
 "messageReleaseSendMessage" = "Release and send the voice message";
