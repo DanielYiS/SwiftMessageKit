@@ -1,0 +1,28 @@
+/*
+  Localizable.strings
+*/
+
+"errorResultData" = "Result data error";
+"errorRecording" = "Recording failed";
+
+"hudLabelText" = "Waiting...";
+
+"btnCancel" = "Cancel";
+"btnContinue" = "Continue";
+
+"btnAlbum" = "Album";
+"btnCamera" = "Camera";
+
+"Voice" = "Voice";
+"inputMessagePlaceholder" = "Input message...";
+
+"messageReleaseSendMessage" = "Release and send the voice message";
+"messageSwipeCancelSend" = "Swipe up to cancel sending";
+"messageFingerCancelSend" = "Release your finger to cancel sending";
+"messageRecordTimeShort" = "The recording time is too short";
+"messageRecordError" = "Recording failed, please try again later";
+"messageMicrophoneTitle" = "Can't access your microphone";
+"messageMicrophoneDesc" = "Please go to Settings -> Privacy -> Allow to access the microphone";
+"messageMicrophoneReloadError" = "Failed to initialize recording function";
+"messageisaPicture" = "You have a picture message";
+"messageisaVoice" = "You have a voice message";
